@@ -1,4 +1,7 @@
-# Python
+
+---
+# PYTHON
+
 ---
 
 ## 1 - Printing & Variables
