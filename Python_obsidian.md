@@ -4,7 +4,7 @@
 
 ---
 
-## 1 - Printing & Variables
+# 1 - Printing & Variables
 
 In Python, the `print()` function is used to display output, such as text, variables, or expressions, on the screen. You can include variables in `print()` using comma-separated values or by embedding them in formatted strings using the plus sign. Using `print(f'')` with f-strings, variables and expressions are inserted dynamically within curly braces `{}`. This approach is useful for generating readable and dynamic output, especially for multi-line text that includes variables or calculations.
 
@@ -22,6 +22,7 @@ gender = "female"
 print("Your name is", name)               # using comma ","
 print("Your age is", age, "you live in", city)  # using comma "," with multiple variables
 print("Your are a " + gender)             # using plus "+"
+print("Your are " + str(age) + "years old")             # using plus "+" with non-string needs type castion to str
 
 # Using f-strings in a single-line print
 print(f"Name: {name}, Age: {age}")
@@ -38,7 +39,7 @@ Name: Alice, Age: 25
 
 ---
 
-## 2 - String Formatting
+# 2 - String Formatting
 
 String formatting in Python allows you to create strings with placeholders that can be dynamically filled with variables or values.
 
@@ -102,7 +103,7 @@ The number in hexadecimal is: 14
 
 ---
 
-## 3 - Python Data Types
+# 3 - Python Data Types
 
 Python data types include integers, floating-point numbers, strings, and Booleans, each serving a distinct purpose in programming.
 
@@ -203,7 +204,7 @@ True, Spongebob, 30
 
 ---
 
-## 4 - Type Casting
+# 4 - Type Casting
 
 Type casting in Python refers to converting one data type into another using built-in functions like `int()`, `float()`, `str()`, and `bool()`. Python also performs some **implicit type conversion** (type coercion) during certain operations. **Nested typecasting** allows multiple conversions in a single expression.
 
@@ -248,7 +249,7 @@ print(converted_number)  # Output: 7
 
 ---
 
-## 5 - String Methods
+# 5 - String Methods
 
 In Python, strings come with a variety of built-in methods accessed using the dot operator (`.`):
 
@@ -299,7 +300,7 @@ Length of the original text: 24
 
 ---
 
-## 6 - List
+# 6 - List
 
 A list in Python is an **ordered, mutable** collection that allows duplicate values. The syntax is `listName = [1, 2, 3]`.
 
@@ -428,9 +429,9 @@ print(matrix)
 
 ---
 
-## 7 - Tuple
+# 7 - Tuple
 
-A tuple in Python is an **ordered, immutable** collection. Unlike lists, elements cannot be changed once created. Syntax: `tupleName = (1, 2, 3)`.
+A tuple in Python is an **ordered, immut able** collection. Unlike lists, elements cannot be changed once created. Syntax: `tupleName = (1, 2, 3)`.
 
 ```python
 my_tuple = (1, 2, 3, 4, 5, 4)
@@ -520,7 +521,7 @@ After modifying list inside tuple id: 140497399086528
 
 ---
 
-## 8 - Set
+# 8 - Set
 
 A set in Python is an **unordered, mutable** collection that **does not allow duplicate values** (duplicates are removed automatically). Defined using `{}` or `set()`. Python also offers **`frozenset`**, which is an immutable set.
 
@@ -533,33 +534,88 @@ Built-in set methods:
 For more info: [python_ref_set](https://www.w3schools.com/python/python_ref_set.asp)
 
 ```python
-my_set  = {1, 2, 3, 4, 5, 5}
-my_set2 = {5, 6, 7, 7, 8}
+# duplicates automatically removed
 
-print(my_set & my_set2, end=" or "); print(my_set.intersection(my_set2))
-print(my_set - my_set2, end=" or "); print(my_set.difference(my_set2))
-print(my_set | my_set2, end=" or "); print(my_set.union(my_set2))
+nums = {1, 2, 3, 4, 5, 5}
+nums2 = {5, 6, 7, 7, 8}
 
-my_set.add(6) ; my_set2.remove(8)
+print("Original sets:")
+print(nums)
+print(nums2)
 
-print(my_set, end=" ") ; print(my_set2)
+# INTERSECTION (common elements)
+print("\nINTERSECTION")
+print(nums & nums2, "or", nums.intersection(nums2))
 
-my_set.update(my_set2); print(my_set)
+# DIFFERENCE (what exists only in left set)
+print("\nDIFFERENCE")
+print(nums - nums2, "or", nums.difference(nums2))
+print(nums2 - nums, "or", nums2.difference(nums))
 
-set1 = frozenset({1, 2, 3, 4}) ; print(set1)
+# UNION (merge everything without duplicates)
+print("\nUNION")
+print(nums | nums2, "or", nums.union(nums2))
 
-set2 = set([1, 2, 3]) ; print(set2)
+# MODIFYING SETS
+nums.add(6) # add one element
+nums2.remove(8) # remove one element (must exist)
+
+print("\nAfter add/remove:")
+print(nums)
+print(nums2)
+
+# UPDATE (merge into the first set)
+nums.update(nums2
+print("\nAfter update:")
+print(nums)
+
+# FROZENSET (immutable set)
+frozen_nums = frozenset({1, 2, 3, 4})
+print("\nfrozenset:", frozen_nums)
+
+normal_set = set([1, 2, 3])
+print("normal set:", normal_set)
+print("\nMULTIPLE INTERSECTION / DIFFERENCE")
+
+s = {1, 2, 3}
+h = {1, 2, 3, 5}
+d = {3, 4}
+
+print("s ∩ d =", s.intersection(d))
+print("s ∩ h ∩ d =", s.intersection(h, d))
+print("s - d =", s.difference(d))
 ```
 
 **Output:**
 ```
+Original sets:
+{1, 2, 3, 4, 5}
+{8, 5, 6, 7}
+
+INTERSECTION
 {5} or {5}
+
+DIFFERENCE
 {1, 2, 3, 4} or {1, 2, 3, 4}
+{8, 6, 7} or {8, 6, 7}
+
+UNION
 {1, 2, 3, 4, 5, 6, 7, 8} or {1, 2, 3, 4, 5, 6, 7, 8}
-{1, 2, 3, 4, 5, 6} {5, 6, 7}
+
+After add/remove:
+{1, 2, 3, 4, 5, 6}
+{5, 6, 7}
+
+After update:
 {1, 2, 3, 4, 5, 6, 7}
-frozenset({1, 2, 3, 4})
-{1, 2, 3}
+
+frozenset: frozenset({1, 2, 3, 4})
+normal set: {1, 2, 3}
+
+MULTIPLE INTERSECTION / DIFFERENCE
+s ∩ d        = {3}
+s ∩ h ∩ d    = {3}
+s - d        = {1, 2}
 ```
 
 ### 8.1 Set Intersection — Three Ways
@@ -592,7 +648,7 @@ Dictionaries allow sets as **values** (not keys) because only keys must be hasha
 
 ---
 
-## 9 - Dictionary
+# 9 - Dictionary
 
 A dictionary is a **mutable, unordered (before Python 3.7) / ordered (Python 3.7+)** collection of **key-value pairs**. Each key is unique. Defined using `{}` with `:` separating keys and values.
 
@@ -665,7 +721,7 @@ print("Hash of key:", key_hash)   # Hash of key: -3795778419071198868
 print("Slot index:", slot_index)  # Slot index: 2
 ```
 
-### Summary of All Data Structures
+# Summary of All Data Structures
 
 ```python
 string = "New York"; string1 = " Paris"
@@ -699,7 +755,7 @@ print(string, end=", "); print(list2, end=", "); print(set_union, end=", "); pri
 
 ---
 
-## 10 - User Input
+# 10 - User Input
 
 In Python, user input is collected using the built-in `input()` function, which returns input as a **string**. Type casting is often required for other data types.
 
@@ -718,7 +774,7 @@ Hello, Joe! You are 31 years old.
 
 ---
 
-## 11 - Math Functions
+# 11 - Math Functions
 
 Python provides a `math` module with tools for mathematical operations: `math.sqrt()`, `math.ceil()`, `math.floor()`, `math.sin()`, `math.cos()`, `math.tan()`, `math.radians()`, `math.degrees()`, `math.exp()`, `math.log()`, `math.pi`, and more.
 
@@ -752,7 +808,7 @@ Value of pi: 3.141592653589793
 
 ---
 
-## 12 - Slicing and Indexing
+# 12 - Slicing and Indexing
 
 **Indexing** retrieves a single element by position (starting at `0`, negative indexes count from the end). **Slicing** extracts a sub-sequence with `[start:stop:step]` (start inclusive, stop exclusive). The `slice()` method creates a reusable slice object.
 
@@ -798,7 +854,7 @@ print(my_list[step_slice])      # [10, 30, 50]
 
 ---
 
-## 13 - Escape Characters
+# 13 - Escape Characters
 
 Escape characters are special characters preceded by a backslash `\`. The `end=""` parameter in `print()` changes what is printed at the end (default is `\n`).
 
@@ -876,7 +932,7 @@ Beep!
 
 ---
 
-## 14 - If Statement
+# 14 - If Statement
 
 An `if` statement executes a block of code only if a specified condition is `True`. Optional `elif` and `else` clauses handle additional conditions.
 
@@ -926,7 +982,7 @@ You are an adult but not old enough to drink in some countries.
 
 ---
 
-## 15 - Logical Operators
+# 15 - Logical Operators
 
 Python supports three main logical operators:
 
@@ -961,7 +1017,7 @@ go back straight in the line
 
 ---
 
-## 16 - While Loop
+# 16 - While Loop
 
 A `while` loop repeatedly executes a block of code as long as a condition is `True`. Useful when the number of iterations is unknown in advance.
 
@@ -1001,7 +1057,7 @@ You did choose the wrong number, You stuck in a loop!
 
 ---
 
-## 17 - For Loop
+# 17 - For Loop
 
 A `for` loop iterates over a sequence (list, tuple, string, or range) and executes a block for each element.
 
@@ -1048,7 +1104,7 @@ P y t h o n
 
 ---
 
-## 18 - Nested Loop
+# 18 - Nested Loop
 
 A nested loop is a loop inside another loop. The inner loop runs completely for each iteration of the outer loop. Commonly used for multidimensional data structures.
 
@@ -1124,7 +1180,7 @@ for x in range(1, 5):
 
 ---
 
-## 19 - Control Flow Statements
+# 19 - Control Flow Statements
 
 - `break` — Terminates the loop immediately
 - `continue` — Skips the current iteration and moves to the next
@@ -1153,7 +1209,7 @@ The number is: 3
 
 ---
 
-## 20 - Function Definition
+# 20 - Function Definition
 
 A function is a reusable block of code defined with the `def` keyword. The `return` statement sends the result back to the caller. Functions can have **default parameters** and **keyword arguments**.
 
@@ -1200,7 +1256,7 @@ key(message="Hi", name="Bob")  # Output: Hi Bob
 
 ---
 
-## First-Class and Higher-Order Functions
+# First-Class and Higher-Order Functions
 
 In Python, functions are **first-class objects** — they can be assigned to variables, stored in data structures, passed as arguments, or returned from other functions.
 
@@ -1277,7 +1333,7 @@ print(returned_function())  # Output: Message: Hello, Python!
 
 ---
 
-## 27 - *args
+# 27 - `*args`
 
 `*args` allows a function to accept any number of **positional arguments**, collected into a **tuple**.
 
@@ -1305,7 +1361,7 @@ The sum is: 50
 
 ---
 
-## **kwargs
+# 28 - `**kwargs`
 
 `**kwargs` allows a function to accept any number of **keyword arguments**, collected into a **dictionary**.
 
@@ -1316,6 +1372,11 @@ def print_greeting(greeting, **kwargs):
         print(f"{key}: {value}")
 
 print_greeting("Hello!", name="Alice", age=25, city="New York")
+
+#or
+
+my_dict = {"name":"Alice", "age":25, "city":"New York"}
+print_greeting("Hello!", **my_dict)
 ```
 
 **Output:**
@@ -1328,7 +1389,7 @@ city: New York
 
 ---
 
-## Variable Scope
+# Variable Scope
 
 The **scope** of a variable determines where it is accessible. Three primary types:
 
@@ -1362,10 +1423,10 @@ def first_function():
     print(f"From first_function: {local_var}")
 
 def second_function():
-    global local_var  # Declare 'local_var' as global to allow adjustments
+    global local_var  # Declare 'local_var' as global to allow adjustments later
     # Print the local 'local_var' which now is global because of line 3
     print(f"From second_function: {local_var}")
-    local_var += 5  # adjust the original 'local_var' because of line 9
+    local_var += 5  # adjust the original 'local_var' because of line 7
     print(f"From second_function after adding 5: {local_var}")
 
 first_function()
@@ -1465,7 +1526,7 @@ UnboundLocalError: cannot access local variable 'outer_var' where it is not asso
 
 ---
 
-## Random Module
+# Random Module
 
 In Python, the `random` module allows you to generate random data for various purposes. You can create random floating-point numbers between 0 and 1 or within a specified range (e.g., a to b), generate random integers within a given range, select random elements from a list or tuple, and even shuffle the elements of a sequence.
 
@@ -1504,9 +1565,43 @@ Random sample of 3 fruits: ['date', 'cherry', 'banana']
 Shuffled numbers: [2, 1, 4, 5, 3]
 ```
 
+## Using a seed (reproducible randomness)
+
+```python
+import random
+
+random.seed(42)
+
+print(random.randint(1, 10))
+print(random.randint(1, 10))
+print(random.randint(1, 10))
+```
+
+With the same seed, this will always produce the same sequence.
+
+## Ignoring the seed (fresh randomness)
+
+If you want randomness that is NOT affected by `random.seed()`, you must create a new independent generator:
+
+```python
+import random
+
+random.seed(42)
+
+print("Seeded:", random.randint(1, 10))
+
+# new independent generator (ignores global seed)
+r = random.Random()
+
+print("Independent:", r.randint(1, 10))
+print("Independent:", r.randint(1, 10))
+```
+
+Each `Random()` instance has its own internal state, so it is not affected by the global seed.
+
 ---
 
-## 32 — Exception Handling
+# 32 — Exception Handling
 
 Exception handling allows you to manage errors that might occur during code execution. By employing `try`, `except`, and `finally` blocks, you can prevent your program from crashing and provide informative feedback to users.
 
@@ -1597,7 +1692,7 @@ You should enter numbers only: 2
 
 ---
 
-## 33 — File Detection
+# 33 — File Detection
 
 File detection in Python involves checking whether a file exists in the filesystem, verifying its attributes, and determining its type.
 
@@ -1647,7 +1742,7 @@ The file 'Example.txt' exists.
 
 ---
 
-## 34 — Read a File
+# 34 — Read a File
 
 To read a file in Python, use the built-in `open()` function. The recommended way is the `with` statement — it ensures the file is automatically closed when the block exits, even if an exception occurs.
 
@@ -1808,7 +1903,7 @@ The “The Sacred Protocol” `with` statement uses two special methods:
 
 ---
 
-## 35 — Write a File
+# 35 — Write a File
 
 Use `open()` with mode `'w'` (overwrite) or `'a'` (append). Always use the `with` statement.
 
@@ -1853,7 +1948,7 @@ Writing data to a file in Python.
 
 ---
 
-## `seek()` and `tell()`
+# `seek()` and `tell()`
 
 `seek()` and `tell()` control and inspect the **file cursor** (file pointer) — the position index indicating where the next read/write will occur.
 
@@ -1903,7 +1998,7 @@ with open("test.txt", "rb") as f:
 
 ---
 
-## 36 — Copy a File
+# 36 — Copy a File
 
 ### Manual Copy
 
@@ -1937,7 +2032,7 @@ shutil.copy2(src="source.txt", dst="destination_file3")
 
 ---
 
-## 38 — Move a File
+# 38 — Move a File
 
 ```python
 import os
@@ -1952,7 +2047,7 @@ shutil.move(src="source.txt", dst="destination_file2")
 
 ---
 
-## 39 — Delete a File
+# 39 — Delete a File
 
 Use `os` or `shutil` depending on what you want to delete. Always check existence first.
 
@@ -1980,7 +2075,7 @@ shutil.rmtree('example_dir')    # Deletes a directory and ALL its contents
 
 ---
 
-## 40 — Module
+# 40 — Module
 
 A **module** is a Python file that contains reusable code — functions, classes, and variables — designed to organize and simplify your programs.
 
@@ -2013,7 +2108,7 @@ From Test2: 20
 
 ---
 
-## 40-A — `if __name__ == "__main__"`
+# 40-A — `if __name__ == "__main__"`
 
 This conditional checks whether the script is being **run directly** or **imported as a module**.
 
@@ -2046,28 +2141,30 @@ Hello from Test1!
 
 ---
 
-## 41 — Object-Oriented Programming (OOP)
+# 41 — Object-Oriented Programming (OOP)
 
 **OOP** is a programming paradigm that organizes code into **objects**, which combine data (attributes) and functions (methods).
 
 - **Class** — A blueprint/template that defines the structure and behavior of objects. It specifies attributes (data/properties) and methods (functions/behaviors).
 - **Object** — A specific instance of a class. Each object has a unique memory location and its own set of attribute values.
 
-### Class Variables
+## Class Variables
 
 Shared among **all instances** of a class. Defined outside any method. Accessed via the class name or `self`, and modified using a `@classmethod`.
 
-### `__init__` (Constructor)
+## `__init__` (Constructor)
 
 Automatically called during object creation to initialize attributes. Cannot use `return`.
 
-### Attributes (Instance Variables)
+## Attributes (Instance Variables)
 
 Unique to individual objects. Initialized in `__init__` to store object-specific data. Can be modified after creation.
 
-### Methods
+## Methods
 
 Functions within a class that define behaviors. The first parameter `self` refers to the calling object.
+
+## Full Example:
 
 ```python
 class Car:
@@ -2094,6 +2191,7 @@ print(car2.drive())   # The Honda Civic is now driving with 3 wheels
 ```
 
 **Output:**
+
 ```
 Object created
 Object created
@@ -2103,9 +2201,7 @@ The Toyota Corolla is now driving with 4 wheels
 The Civic is now driving with 3 / 4 wheels
 ```
 
----
-
-### `self` — What It Is and Why It Matters
+## `self` — What It Is and Why It Matters
 
 `self` refers to the **specific instance** of the object being created or modified. It allows each object to store its own attributes and access its own methods.
 
@@ -2126,14 +2222,13 @@ if rose.height > 30:  # ❌ ERROR — height was never assigned to self
 ```
 
 **Output:**
+
 ```
 rose grew to 35cm
 AttributeError: 'Plant' object has no attribute 'height'
 ```
 
----
-
-### How Objects Are Stored
+## How Objects Are Stored
 
 Instance data is stored in memory using an internal dictionary (`__dict__`). When you do `self.attribute = value`, Python inserts an entry into the object's `__dict__`.
 
@@ -2148,8 +2243,6 @@ print(b.__dict__)            # {'title': 'Python Basics', 'pages': 200}
 print(b.title)               # Python Basics
 print(b.__dict__['title'])   # Python Basics
 ```
-
----
 
 ### Using the Class Name Instead of `self`
 
@@ -2178,7 +2271,7 @@ There are 3 cars
 
 ---
 
-## Protected Attributes
+# Protected Attributes
 
 A **single underscore** prefix (e.g., `_age`) is a convention indicating the attribute is for **internal use only**. It is NOT enforced by Python — external code can still access it.
 
@@ -2201,7 +2294,7 @@ rose.grow()         # Output: Rose is now 15 days old.
 
 ---
 
-## Name Mangling
+# Name Mangling
 
 A **double underscore** prefix (e.g., `__age`) triggers **name mangling** — Python renames the attribute internally to `_ClassName__age`. This prevents direct access by the original name from outside the class.
 
@@ -2224,7 +2317,7 @@ rose.grow()
 
 ---
 
-## 56 — Inheritance (OOP)
+# 56 — Inheritance (OOP)
 
 **Inheritance** allows one class (child/subclass) to inherit the attributes and methods of another class (parent/superclass). The child class can extend or override the parent's behavior.
 
@@ -2290,7 +2383,7 @@ c = Child("Alice")
 
 ---
 
-## 46 — Method Chaining (OOP)
+# 46 — Method Chaining (OOP)
 
 **Method chaining** (fluent interface) allows multiple methods to be called on the same object in a single line. Each method returns `self` to enable chaining.
 
@@ -2329,11 +2422,10 @@ Result: 25.0
 
 ---
 
-## 47 — The `super()` Function (OOP)
+# 47 — The `super()` Function (OOP)
 
-`super()` accesses methods and attributes of a **parent class** without directly naming it. Particularly useful when a child class overrides a method but still needs the parent's functionality.
-
-> In **multiple inheritance**, `super()` follows the **MRO (Method Resolution Order)** to determine which method to call.
+`super()` accesses methods and attributes of a **parent class** without directly naming it. It is especially useful when a child class overrides a method but still needs the parent’s behavior.
+## Basic Example
 
 ```python
 class Parent:
@@ -2357,16 +2449,60 @@ child.greet()
 ```
 
 **Output:**
+
 ```
 Hello, my name is Alice.
 I am 12 years old.
 ```
 
+## Grandchild Example (calling parent constructor explicitly)
+
+You can also create a **grandchild class**, and still call the parent constructor directly.
+
+This shows how inheritance chains work beyond one level.
+
+```python
+class Parent:
+    def __init__(self, name):
+        self.name = name
+
+class Child(Parent):
+    def __init__(self, name, age):
+        super().__init__(name)
+        self.age = age
+
+class Grand_Child(Child):
+    def __init__(self, name, height):
+        Parent.__init__(self, name)  # Call Parent's __init__ directly
+        self.height = height
+
+    def greet(self):
+        print(f"I am {self.height} cm.")
+
+child = Grand_Child("Alice", 12)
+child.greet()
+```
+
+**Output:**
+
+```
+I am 12 cm.
+```
+
+## Key idea
+
+|Method|Meaning|
+|---|---|
+|`super()`|Follows inheritance chain automatically (recommended)|
+|`Parent.__init__()`|Direct call to a specific class (manual control)|
+
+`super()` is safer in complex inheritance trees, while direct calls give explicit control but can break MRO logic in multiple inheritance cases.
+
 ---
 
-## 48 — Abstract Methods (OOP)
+# 48 — Abstract Methods (OOP)
 
-**Abstract classes** contain one or more abstract methods (templates with no implementation). They **cannot be instantiated directly** — subclasses must provide concrete implementations.
+**Abstract classes** contain one or more abstract methods (templates with no implementation). They **cannot be instantiated directly (if they have @abstractmethod)** — subclasses must provide concrete implementations.
 
 To define an abstract class: import `ABC` from the `abc` module and use `@abstractmethod`.
 
@@ -2402,7 +2538,7 @@ Error: Can't instantiate abstract class Shape without an implementation for abst
 
 ### How Python Raises Errors for Abstract Base Classes
 
-In Python, a class that inherits from ABC does not automatically raise an error when instantiated; the error occurs only if the class contains unimplemented abstract methods. When a method is decorated with `@abstractmethod`, Python marks it with `__isabstractmethod__ = True` and adds it to the class’s `__abstractmethods__` set. During instantiation, Python checks this set: if it is non-empty, the class is considered abstract, and attempting to create an instance raises a TypeError. If the class has no abstract methods, the `__abstractmethods__` set is empty, and Python allows instantiation. So, ABCs themselves are not inherently blocked from instantiation; it is the presence of abstract methods that enforces the error, ensuring that subclasses implement all required behavior before they can be instantiated.
+In Python When a method is decorated with `@abstractmethod`, Python marks it with `__isabstractmethod__ = True` and adds it to the class’s `__abstractmethods__` set. During instantiation, Python checks this set: if it is non-empty, the class is considered abstract, and attempting to create an instance from the Abstract class itself raises a TypeError. If the class has no abstract methods, the `__abstractmethods__` set is empty, and Python allows instantiation. So, ABCs themselves are not inherently blocked from instantiation; it is the presence of abstract methods that enforces the error, ensuring that subclasses implement all required behavior before they can be instantiated.
 ### How Python Tracks Abstract Methods
 
 **Definition**
@@ -2444,11 +2580,8 @@ class Dog(Animal):
 print("Animal.__abstractmethods__:", Animal.__abstractmethods__)
 
 # Inspect the method objects
-make_sound_method = Animal.__dict__['make_sound']
-eat_method = Animal.__dict__['eat']
-
-print("Animal.make_sound.__isabstractmethod__:", getattr(make_sound_method, "__isabstractmethod__", False))
-print("Animal.eat.__isabstractmethod__:", getattr(eat_method, "__isabstractmethod__", False))
+print("Animal.make_sound.__isabstractmethod__:", getattr(Animal.make_sound, "__isabstractmethod__", False))
+print("Animal.eat.__isabstractmethod__:", getattr(Animal.eat, "__isabstractmethod__", False))
 
 # Inspect the subclass
 print("Dog.__abstractmethods__:", Dog.__abstractmethods__)
@@ -2524,7 +2657,7 @@ print(A.__abstractmethods__)
 Output:
 
 ```
-frozenset({'f'})
+frozenset({'some_method'})
 ```
 
 ## Instantiation check
@@ -2587,40 +2720,7 @@ ABCMeta → metaclass that enforces abstract methods
 `ABCMeta` is the metaclass that implements Python’s abstract class system by tracking abstract methods and preventing instantiation of incomplete classes.
 
 ---
-
-## 32-A — `NotImplementedError`
-
-`NotImplementedError` is a built-in exception that indicates a method declared in a base class has **not been implemented** by a subclass. Used as a reminder to provide the implementation.
-
-```python
-class Animal:
-    def make_sound(self):
-        raise NotImplementedError("Subclasses must implement make_sound method")
-
-class Dog(Animal):
-    def make_sound(self):
-        return "Dog said: Woof!"
-
-class Cat(Animal):
-    pass  # Cat doesn't implement make_sound
-
-print(Dog().make_sound())
-
-try:
-    Cat().make_sound()  # Raises NotImplementedError
-except Exception as exception:
-    print("Error:", exception)
-```
-
-**Output:**
-```
-Dog said: Woof!
-Error: Subclasses must implement make_sound method
-```
-
----
-
-## 49 — The Class Method (OOP)
+# 49 — The Class Method (OOP)
 
 A `@classmethod` is bound to the **class itself** rather than to instances. It takes `cls` as its first parameter instead of `self`.
 
@@ -2634,19 +2734,23 @@ A `@classmethod` is bound to the **class itself** rather than to instances. It t
 
 ```python
 class Example:
+
     count = 0
+
+	def __init__(self, name):
+		self.name = name
 
     @classmethod
     def increment_count(cls):
         cls.count += 1
         return cls.count
 
-print(f"count = {Example().increment_count()}")    # count = 1
-print(f"count1 = {Example.increment_count()}")     # count1 = 2
-print(f"count1 = {Example.increment_count()}")     # count1 = 3
+print(f"count = {Example.increment_count()}")    # count = 1
+print(f"count = {Example.increment_count()}")     # count = 2
+print(f"count = {Example.increment_count()}")     # count = 3
 
-example_instance2 = Example()
-print(f"count2 = {example_instance2.increment_count()}")  # count2 = 4
+example_instance2 = Example("Alice")
+print(f"count = {example_instance2.increment_count()}")  # count = 4
 ```
 
 ### Not Using `@classmethod` — per-instance counter
@@ -2683,7 +2787,8 @@ class Person:
     def from_birth_year(cls, name, age):
         current_year = 2024
         birth_year = current_year - age
-        return Person(name, age, birth_year)
+        return cls(name, age, birth_year)
+        # return Person(name, age, birth_year) <-- this also works
 
 Person("Alice", 40, 1984)
 p = Person.from_birth_year("Alice", 40)
@@ -2759,8 +2864,7 @@ print(Child.count)  # 11
 ```
 
 ---
-
-## Accessing Outer Class Instance in Nested Classes
+# Accessing Outer Class Instance in Nested Classes
 
 A nested class does **not** automatically have access to the enclosing outer class instance. You must **explicitly pass** the outer instance.
 
